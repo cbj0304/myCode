@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>书籍查询系统</title>
+</head>
+<body>
+<form method="post">
+    {# 表单展示 #}
+    {# 设置隐藏的csrf_tooken #}
+    {{ form.csrf_token }}
+    {{ form.author_name.label }} {{ form.author_name }} <br>
+    {{ form.book_name.label }}{{ form.book_name }} <br>
+    {{ form.submit }} <br>
+    {% for m in get_flashed_messages() %}
+    <font style='color:red'>{{ m }}</font>
+    {% endfor %}
+</form>
+
+<hr>
+{# 书籍展示 #}
+{# 先遍历作者，在作者里遍历书籍，填充无序列表ur li标签 #}
+<ul>
+    {% for au in authors %}
+    <li>{{ au.name }}<a href="/delete_author/{{ au.id }}">删除</a></li>
+    <ul>
+        {% for b in au.books %}
+        {# jinja2里也支持url_for，参数是视图函数名称，其效果和上边直接写url地址一样 #}
+        <li>{{ b.name }}<a href="{{ url_for('delete_book', book_id=b.id) }}">删除</a></li>
+        {# 注意 jinja2中for循环可以用else #}
+        {% else %}
+        <li>无</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</ul>
+    
+</body>
+</html>

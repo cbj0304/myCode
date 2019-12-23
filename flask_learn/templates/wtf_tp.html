@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="gb2312">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flask-WTF??</title>
+</head>
+<body>
+    <form method="post">
+        {# ??CRSF_TOKEN #}
+        {{ form.csrf_token }}
+        {{ form.username.label }}: {{ form.username }} <br>
+        {{ form.password.label }}: {{ form.password }} <br>
+        {{ form.password2.label }}: {{ form.password2 }} <br>
+        {{ form.submit }} <br>
+        {% for f in get_flashed_messages() %}
+        {{ f }}
+        {% endfor %}
+    </form>
+    
+</body>
+</html>
+

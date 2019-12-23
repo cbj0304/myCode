@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jinja2模板引擎测试</title>
+</head>
+<body>
+    {# 常用数据类型-双大括号 #}
+    <p>mystr= {{ mystr }}</p>
+    <p>mylist= {{ mylist }}</p>
+    <p>mylist.2= {{ mylist.2 }}</p>
+    <p>mylist[3]= {{ mylist[3] }}</p>
+    <p>mydict= {{ mydict }}</p>
+    <p>mydict.name= {{ mydict.name }}</p>
+    <p>mydict['age']= {{ mydict['age'] }}</p>
+
+    <hr />
+    {# 控制语句-括号内加百分号 #}
+    {% for v in mylist %}
+        {% if v > 3 %}
+            {{v}}
+        {% endif %}
+    {% endfor %}
+
+    <hr />
+    {# 过滤器 #}
+    {{ mystr | reverse | upper }} <br />
+    {{ mylist | sort }} <br />
+    {{ mylist | sum }} <br />
+</body>
+</html>
